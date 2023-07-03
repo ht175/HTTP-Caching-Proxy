@@ -1,0 +1,16 @@
+1. Initially, we thought the buffer would be long enough to hold the request and response. However, with an in-depth understanding of the HTTP request and response, we found that the body part of the GET method response and the POST method request will be very long, which may exceed the buffer memory. In order to solve this problem, we parse the Content-Length in the header, and then receive/send data piece by piece through the while loop.
+
+2. At first, when we got response from server, we created a new Response object and passed the pointer of this object to the chunk handler function. In chunk handler function, we get response line from that object and convert it to char * and send it to client. However, by using this method, after experiencing several times type conversion, we cannot successfully receive and send data between client and server. To deal with this problem, we avoid passing the object pointer to that function and type conversion, and just pass char[] that we receive from server to send to client.
+
+3. When declaring a struct type, we need always initialize it by using memset function. Otherwise, we will experience “conditional jump or move depends on uninitialised value(s)” error.
+For example, 
+struct tm expire_time;
+memset(&expire_time, 0, sizeof(expire_time))
+
+4. Initially, we were going to use a mutex to lock to protect the entire cache for each thread. While testing, we found that this was not a good approach and would make the program run too slowly. Then, we found that data race could only occur when the log file was changed, so we decided to use a mutex lock to protect the file only every time the log file was changed.
+
+5. We have considered and handled the case where functions such as select, recv, send, getaddrinfo, accept, and socket, etc. may fail to run.
+
+6. We have considered and handled the case where functions like select, recv, send, getaddrinfo, and socket, etc. may fail to run. For some functions that fail, such as accept, the proxy will end the run and print an error to the user. For other functions, the proxy will end this request, print an error to the user, and accept the next client request.
+
+7. We also handle some other cases of errors. For example, if the proxy receives a malformed request, it will send a "400 Bad Request" to the client and log it in the log file at the same time.

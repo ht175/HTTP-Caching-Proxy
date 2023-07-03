@@ -1,0 +1,206 @@
+/////////////////////////////////////////////////////
+METHOD -- CONNECT
+/////////////////////////////////////////////////////
+----------------------------------------------------
+Test: basic test for CONNECT
+----------------------------------------------------
+0: "CONNECT scholar.google.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:30:02 2023
+0: Requesting "CONNECT scholar.google.com:443 HTTP/1.1" from scholar.google.com
+0: Responding "HTTP/1.1 200 OK"
+1: "CONNECT google.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:30:02 2023
+1: Requesting "CONNECT google.com:443 HTTP/1.1" from google.com
+1: Responding "HTTP/1.1 200 OK"
+2: "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:30:02 2023
+2: Requesting "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from lh3.googleusercontent.com
+2: Responding "HTTP/1.1 200 OK"
+3: "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:30:33 2023
+3: Requesting "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from neat-iodine-05e.notion.site
+3: Responding "HTTP/1.1 200 OK"
+4: "CONNECT beacons.gcp.gvt2.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:30:33 2023
+4: Requesting "CONNECT beacons.gcp.gvt2.com:443 HTTP/1.1" from beacons.gcp.gvt2.com
+4: Responding "HTTP/1.1 200 OK"
+5: "CONNECT alive.github.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:30:35 2023
+5: Requesting "CONNECT alive.github.com:443 HTTP/1.1" from alive.github.com
+5: Responding "HTTP/1.1 200 OK"
+6: "CONNECT history.google.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:31:07 2023
+6: Requesting "CONNECT history.google.com:443 HTTP/1.1" from history.google.com
+6: Responding "HTTP/1.1 200 OK"
+2: Tunnel closed
+0: Tunnel closed
+7: "CONNECT www.google.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:34:33 2023
+7: Requesting "CONNECT www.google.com:443 HTTP/1.1" from www.google.com
+7: Responding "HTTP/1.1 200 OK"
+6: Tunnel closed
+1: Tunnel closed
+
+
+
+
+/////////////////////////////////////////////////////
+METHOD -- POST
+/////////////////////////////////////////////////////
+----------------------------------------------------
+Test: http://httpbin.org/forms/post
+----------------------------------------------------
+Log file:
+0: "GET http://httpbin.org/forms/post HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 04:44:23 2023
+0: not in cache
+0: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
+0: Received "HTTP/1.1 200 OK" from httpbin.org
+0: cached, expires at Wed Mar  1 04:44:24 2023
+0: Responding "HTTP/1.1 200 OK"
+1: "CONNECT clients2.google.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 04:44:24 2023
+1: Requesting "CONNECT clients2.google.com:443 HTTP/1.1" from clients2.google.com
+1: Responding "HTTP/1.1 200 OK"
+2: "POST http://httpbin.org/post HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 04:44:41 2023
+2: Requesting "POST http://httpbin.org/post HTTP/1.1" from httpbin.org
+2: Received "HTTP/1.1 200 OK" from httpbin.org
+2: Responding "HTTP/1.1 200 OK
+
+
+
+
+/////////////////////////////////////////////////////
+METHOD -- GET
+/////////////////////////////////////////////////////
+----------------------------------------------------
+Test 1: max-age
+'Content-Type': 'application/json',
+'Cache-Control': 'max-age=2'
+----------------------------------------------------
+Log file:
+0: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 04:52:47 2023
+0: not in cache
+0: Requesting "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from vcm-30906.vm.duke.edu
+0: Received "HTTP/1.1 200 OK" from vcm-30906.vm.duke.edu
+0: cached, expires at Tue Feb 28 04:52:49 2023
+0: Responding "HTTP/1.1 200 OK"
+1: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 04:52:48 2023
+1: in cache, valid
+1: Responding "HTTP/1.1 200 OK"
+2: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 04:52:52 2023
+2: in cache, but expired at Tue Feb 28 04:52:49 2023
+2: Requesting "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from vcm-30906.vm.duke.edu
+2: Received "HTTP/1.1 200 OK" from vcm-30906.vm.duke.edu
+2: cached, expires at Tue Feb 28 04:52:54 2023
+2: Responding "HTTP/1.1 200 OK"
+
+
+----------------------------------------------------
+Test 2: Expires
+'Content-Type': 'application/json',
+'Expires': 'Mon, 28 Feb 2023 2:27:00 GMT'
+----------------------------------------------------
+Log file:
+0: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 02:26:37 2023
+0: not in cache
+0: Requesting "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from vcm-30906.vm.duke.edu
+0: Received "HTTP/1.1 200 OK" from vcm-30906.vm.duke.edu
+0: cached, expires at Mon Feb 28 02:27:00 2023
+0: Responding "HTTP/1.1 200 OK"
+1: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 02:26:50 2023
+1: in cache, valid
+1: Responding "HTTP/1.1 200 OK"
+2: "CONNECT ogs.google.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 02:26:51 2023
+2: Requesting "CONNECT ogs.google.com:443 HTTP/1.1" from ogs.google.com
+2: Responding "HTTP/1.1 200 OK"
+3: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 02:26:52 2023
+3: in cache, valid
+3: Responding "HTTP/1.1 200 OK"
+4: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 02:27:00 2023
+4: in cache, but expired at Mon Feb 28 02:27:00 2023
+4: Requesting "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from vcm-30906.vm.duke.edu
+4: Received "HTTP/1.1 200 OK" from vcm-30906.vm.duke.edu
+4: cached, expires at Mon Feb 28 02:27:00 2023
+4: Responding "HTTP/1.1 200 OK"
+
+
+----------------------------------------------------
+Test 3: revalidate (no_cache) without Last_Modified and Etag
+'Date': 'Mon, 28 Feb 2023 12:00:00 GMT',
+'Server': 'ExampleServer/1.0',
+'Content-Type': 'text/html',
+'Cache-Control': 'no-cache',
+'Content-Length': '1234'
+----------------------------------------------------
+Log file:
+0: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 02:48:39 2023
+0: not in cache
+0: Requesting "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from vcm-30906.vm.duke.edu
+0: Received "HTTP/1.1 200 OK" from vcm-30906.vm.duke.edu
+0: cached, but requires re-validation
+0: Responding "HTTP/1.1 200 OK"
+1: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 02:48:40 2023
+1: in cache, requires validation
+1: Requesting "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from vcm-30906.vm.duke.edu
+1: Received "HTTP/1.1 200 OK" from vcm-30906.vm.duke.edu
+1: cached, but requires re-validation
+1: Responding "HTTP/1.1 200 OK"
+
+
+
+----------------------------------------------------
+Test 4: revalidate (no_cache) with Last_Modified and Etag
+http://info.cern.ch/
+----------------------------------------------------
+Log file:
+0: "GET http://info.cern.ch/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 05:55:03 2023
+0: not in cache
+0: Requesting "GET http://info.cern.ch/ HTTP/1.1" from info.cern.ch
+0: Received "HTTP/1.1 200 OK" from info.cern.ch
+0: cached, expires at Wed Mar  1 05:55:03 2023
+0: Responding "HTTP/1.1 200 OK"
+1: "GET http://info.cern.ch/favicon.ico HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 05:55:03 2023
+1: not in cache
+1: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
+1: Received "HTTP/1.1 200 OK" from info.cern.ch
+1: cached, expires at Wed Mar  1 05:55:04 2023
+1: Responding "HTTP/1.1 200 OK"
+2: "GET http://info.cern.ch/hypertext/DataSources/Top.html HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 05:56:24 2023
+2: not in cache
+2: Requesting "GET http://info.cern.ch/hypertext/DataSources/Top.html HTTP/1.1" from info.cern.ch
+2: Received "HTTP/1.1 304 Not Modified" from info.cern.ch
+2: cached, expires at Wed Mar  1 05:56:24 2023
+2: Responding "HTTP/1.1 304 Not Modified"
+3: "CONNECT beacons.gcp.gvt2.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 05:56:25 2023
+3: Requesting "CONNECT beacons.gcp.gvt2.com:443 HTTP/1.1" from beacons.gcp.gvt2.com
+3: Responding "HTTP/1.1 200 OK"
+4: "CONNECT beacons5.gvt3.com:443 HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 05:56:25 2023
+4: Requesting "CONNECT beacons5.gvt3.com:443 HTTP/1.1" from beacons5.gvt3.com
+4: Responding "HTTP/1.1 200 OK"
+
+
+----------------------------------------------------
+Test 5: no-store
+'Date': 'Mon, 28 Feb 2023 12:00:00 GMT',
+'Server': 'ExampleServer/1.0',
+'Content-Type': 'text/html',
+'Cache-Control': 'no-store',
+'Content-Length': '1234'
+----------------------------------------------------
+Log file:
+0: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:14:23 2023
+0: not in cache
+0: Requesting "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from vcm-30906.vm.duke.edu
+0: Received "HTTP/1.1 200 OK" from vcm-30906.vm.duke.edu
+0: not cacheable because no store
+0: Responding "HTTP/1.1 200 OK"
+1: "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 03:14:25 2023
+1: not in cache
+1: Requesting "GET http://vcm-30906.vm.duke.edu:5000/ HTTP/1.1" from vcm-30906.vm.duke.edu
+1: Received "HTTP/1.1 200 OK" from vcm-30906.vm.duke.edu
+1: not cacheable because no store
+1: Responding "HTTP/1.1 200 OK"
+
+
+
+----------------------------------------------------
+Test 6: chunked transfer encoding
+http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx
+----------------------------------------------------
+Log file:
+2: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 76.36.238.128 @ Tue Feb 28 04:33:01 2023
+2: not in cache
+2: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+2: Received "HTTP/1.1 200 OK" from www.httpwatch.com
+2: Responding "HTTP/1.1 200 OK"
